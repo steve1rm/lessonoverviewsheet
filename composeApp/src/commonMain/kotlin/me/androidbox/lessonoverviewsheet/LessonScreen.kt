@@ -34,9 +34,7 @@ fun LessonScreen(
                 .padding(top = 28.dp)
         ) {
 
-            Header(
-                modifier = Modifier.padding(horizontal = 20.dp)
-            )
+            Header()
 
             Spacer(modifier = Modifier.height(16.dp))
 

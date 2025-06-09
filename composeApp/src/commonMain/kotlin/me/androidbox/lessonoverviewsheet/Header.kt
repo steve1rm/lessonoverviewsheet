@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -15,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import lessonoverviewsheet.composeapp.generated.resources.Res
@@ -25,18 +27,26 @@ import org.jetbrains.compose.resources.vectorResource
 @Composable
 fun Header(modifier: Modifier = Modifier) {
 
-    Column(
-        modifier = modifier
-    ) {
+    Column(modifier = modifier.padding(horizontal = 16.dp)) {
         Text(
+            modifier = modifier.fillMaxWidth(),
             text = "Physics Crash Course",
+            textAlign = if(isTablet()) {
+                TextAlign.Center} else {
+                TextAlign.Start},
             fontFamily = poltawskinowy(),
             fontWeight = FontWeight.Bold,
             fontSize = 36.sp,
             lineHeight = 40.sp
         )
 
+        Spacer(modifier = Modifier.height(8.dp))
+
         Text(
+            modifier = modifier.fillMaxWidth(),
+            textAlign = if(isTablet()) {
+                TextAlign.Center} else {
+                TextAlign.Start},
             text = "The Physics Crash Course offers a foundational overview of essential concepts, teaching learners to understand Newton’s three laws of motion, explain the principle of energy conservation, distinguish between kinetic and potential energy with real-world examples, solve basic problems involving force and mass, and apply the concept of momentum in everyday situations.",
             fontFamily = montserrat(),
             fontWeight = FontWeight.Normal,
@@ -44,10 +54,16 @@ fun Header(modifier: Modifier = Modifier) {
             lineHeight = 24.sp
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(4.dp)
+            horizontalArrangement = Arrangement.spacedBy(4.dp, if(isTablet()) {
+                Alignment.CenterHorizontally} else {
+                Alignment.Start
+            }
+            )
         ) {
             TopicPill(
                 text = "Intermediate",
@@ -73,22 +89,40 @@ fun Header(modifier: Modifier = Modifier) {
                 textColor = greenPillText,
                 backgroundColor = greenPillBg
             )
+
+            if(isTablet()) {
+                TopicPill(
+                    modifier = Modifier.border(width = 1.dp, color = stroke, shape = CircleShape),
+                    text = "15 mins",
+                    textColor = secondaryText,
+                    backgroundColor = Color.Transparent,
+                    icon = {
+                        Icon(
+                            imageVector = vectorResource(resource = Res.drawable.clock),
+                            contentDescription = null,
+                            tint = Color.Unspecified
+                        )
+                    }
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        TopicPill(
-            modifier = Modifier.border(width = 1.dp, color = stroke, shape = CircleShape),
-            text = "15 mins",
-            textColor = secondaryText,
-            backgroundColor = Color.Transparent,
-            icon = {
-                Icon(
-                    imageVector = vectorResource(resource = Res.drawable.clock),
-                    contentDescription = null,
-                    tint = Color.Unspecified
-                )
-            }
-        )
+        if(!isTablet()) {
+            TopicPill(
+                modifier = Modifier.border(width = 1.dp, color = stroke, shape = CircleShape),
+                text = "15 mins",
+                textColor = secondaryText,
+                backgroundColor = Color.Transparent,
+                icon = {
+                    Icon(
+                        imageVector = vectorResource(resource = Res.drawable.clock),
+                        contentDescription = null,
+                        tint = Color.Unspecified
+                    )
+                }
+            )
+        }
     }
 }
