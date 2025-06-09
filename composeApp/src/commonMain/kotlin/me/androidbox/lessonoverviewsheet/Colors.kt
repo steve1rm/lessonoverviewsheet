@@ -6,6 +6,7 @@ import androidx.compose.ui.graphics.Color
 val background = Color(0xff6B74F8)
 val purplePillBg = Color(0xffEFEFFC)
 val greenPillText = Color(0xff03A564)
+val greenPillBg = Color(0xffE5FBF2)
 val tealPillText = Color(0xff07A8A2)
 val tealPilBg = Color(0xffEFFCFB)
 val pinkPillText = Color(0xffEFFCFB)
