@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Preview
+@Preview(showSystemUi = true, showBackground = true, device = "spec:width=411dp,height=891dp")
 @Composable
 fun AppAndroidPreview() {
     App()
